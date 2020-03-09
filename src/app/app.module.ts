@@ -11,6 +11,7 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { RegionPageComponent } from './region-page/region-page.component';
 import { FilterPipe } from './filter.pipe';
 import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
+import { OverviewPageComponent } from './overview-page/overview-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
     PokemonCardComponent,
     RegionPageComponent,
     FilterPipe,
-    FavoriteiconComponent
+    FavoriteiconComponent,
+    OverviewPageComponent
   ],
   imports: [
     BrowserModule,
