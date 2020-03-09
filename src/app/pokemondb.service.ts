@@ -61,7 +61,12 @@ export class PokemondbService {
           pokedexNumbers: s.pokedex_numbers
         }
 
-        var pokemonDataString = JSON.stringify(pokemonData);
+        var typeNames = "";
+        p.types.forEach(t => {
+          typeNames += t.type.name
+        });
+
+        var pokemonDataString = p.name + p.id + typeNames
 
         var pokemonDataWithString = {
           name: p.name,

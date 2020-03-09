@@ -48,11 +48,12 @@ export class RegionPageComponent implements OnInit {
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
     console.log(`RegionPokemon (${this.regionName}):`)
     // console.log(this.pokemon);
-    console.log(this.pokemon.filter(i=>i.name ==="treecko"))
+    // console.log(this.pokemon.filter(i=>i.name ==="abra"))
+    // console.log(allPokemon.filter(i=>i.name==="abra"))
 
   } // ngOnInit()
 
-  setFilterStatus(filterName: string, status: string){
+  setFilterStatus(filterName: string, status: any){
     console.log(`${filterName} status: ${status}`);
     if(filterName == "caught"){
       this.isCaught = status;
