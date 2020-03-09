@@ -6,10 +6,32 @@
       </div>
       
       <app-favoriteicon [pokemon]="pokemon"></app-favoriteicon>
+
       <div *ngFor="let type of pokemon.types">
           <p>{{type.type.name}}</p>
       </div>
 
+      <div *ngIf="pokemon.caught===true;else inactiveCaught">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.number, pokemon.region, true, pokemon.favorite)">
+                <input type="radio" name="options" id="Caught" > Caught
+            </label>
+            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.number, pokemon.region, false, pokemon.favorite)">
+                <input type="radio" name="options" id="Caught" > Not Caught
+            </label>
+        </div>
+    </div>
+
+    <ng-template #inactiveCaught>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.number, pokemon.region, true, pokemon.favorite)">
+                <input type="radio" name="options" id="Caught" > Caught
+            </label>
+            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.number, pokemon.region, false, pokemon.favorite)">
+                <input type="radio" name="options" id="Caught" > Not Caught
+            </label>
+        </div>
+    </ng-template>
       
 
   </div>
