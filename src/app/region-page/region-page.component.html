@@ -1,1 +1,8 @@
-<p>region-page works!</p>
+
+<h1 style="margin-left: 10px; margin-top: 10px;"> {{regionName}}</h1>
+
+<div class="card-deck" style="margin-left: 5px; margin-top: 25px;">
+    <div *ngFor="let mon of pokemon | filter:{name: searchText, caught: isCaught, favorite: isFavorite, number: searchNumber}">
+        <app-pokemon-card [pokemon]="mon"></app-pokemon-card>
+    </div>
+</div>

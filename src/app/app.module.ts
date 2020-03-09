@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { RegionPageComponent } from './region-page/region-page.component';
+import { FilterPipe } from './filter.pipe';
+import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonCardComponent,
-    RegionPageComponent
+    RegionPageComponent,
+    FilterPipe,
+    FavoriteiconComponent
   ],
   imports: [
     BrowserModule,

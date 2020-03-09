@@ -1,1 +1,16 @@
-<p>pokemon-card works!</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+
+      <div class="d-inline-block">
+          <h5 class="card-title" >{{pokemon.name}} - {{pokemon.number}}</h5>
+      </div>
+      
+      <app-favoriteicon [pokemon]="pokemon"></app-favoriteicon>
+      <div *ngFor="let type of pokemon.types">
+          <p>{{type.type.name}}</p>
+      </div>
+
+      
+
+  </div>
+</div>
