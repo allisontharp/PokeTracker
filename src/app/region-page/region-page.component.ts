@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as localforage from "localforage";
 import { ActivatedRoute } from '@angular/router';
+// import { FormsModule } from '@angular/forms';
 
 const Pokedex = require('pokeapi-js-wrapper');
 const P = new Pokedex.Pokedex();
@@ -51,6 +52,15 @@ export class RegionPageComponent implements OnInit {
 
   } // ngOnInit()
 
+  setFilterStatus(filterName: string, status: string){
+    console.log(`${filterName} status: ${status}`);
+    if(filterName == "caught"){
+      this.isCaught = status;
+    }
+    else if(filterName == "favorite"){
+      this.isFavorite = status
+    }
+  }
   
 
 }
