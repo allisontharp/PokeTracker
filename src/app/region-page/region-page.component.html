@@ -1,0 +1,37 @@
+
+<h1 style="margin-left: 10px; margin-top: 10px;"> {{regionName}}</h1>
+
+<div class="d-inline-block" style="margin-left: 10px; margin-top: 10px;">
+    <input class="form-control" placeholder="Filter" [(ngModel)]="searchText">
+</div>
+<div class="d-inline-block" style="margin-left: 10px;">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Caught Status:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <a class="dropdown-item" (click)="setFilterStatus('caught', true)" >Caught</a>
+            <a class="dropdown-item"  (click)="setFilterStatus('caught', false)">Not Caught</a>
+            <a class="dropdown-item"  (click)="setFilterStatus('caught', undefined)">Both</a>
+        </div>
+    </div>
+</div>
+<div class="d-inline-block" style="margin-left: 10px;">
+    <div class="dropdown" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Favorite Status:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <a class="dropdown-item" (click)="setFilterStatus('favorite', true)" >Favorite</a>
+            <a class="dropdown-item"  (click)="setFilterStatus('favorite', false)">Not Favorite</a>
+            <a class="dropdown-item"  (click)="setFilterStatus('favorite', undefined)">Both</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-deck" style="margin-left: 5px; margin-top: 25px;">
+    <div *ngFor="let mon of pokemon | filter:{string: searchText, caught: isCaught, favorite: isFavorite, number: searchNumber}">
+        <app-pokemon-card [pokemon]="mon"></app-pokemon-card>
+    </div>
+</div>
