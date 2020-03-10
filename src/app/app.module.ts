@@ -12,6 +12,7 @@ import { RegionPageComponent } from './region-page/region-page.component';
 import { FilterPipe } from './filter.pipe';
 import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OverviewPageComponent } from './overview-page/overview-page.component';
     RegionPageComponent,
     FilterPipe,
     FavoriteiconComponent,
-    OverviewPageComponent
+    OverviewPageComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

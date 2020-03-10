@@ -1,8 +1,17 @@
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">ORAS</h5>
-      <p>Total: {{oras.total}}</p>
-      <p class="card-text">Total Caught: {{oras.caught}}</p>
-      <p>Total Favorites: {{oras.favorite}}</p>
+
+
+  <div *ngIf = "loadingComplete === false; else ngTemplateTrue">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
+  <ng-template #ngTemplateTrue>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">ORAS</h5>
+        <p>Total: {{oras.total}}</p>
+        <p class="card-text">Total Caught: {{oras.caught}}</p>
+        <p>Total Favorites: {{oras.favorite}}</p>
+      </div>
+    </div>
+  </ng-template>

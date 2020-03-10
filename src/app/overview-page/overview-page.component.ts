@@ -10,12 +10,14 @@ import { PokemondbService } from '../pokemondb.service';
 export class OverviewPageComponent implements OnInit {
   oras;
   letsgo;
+  loadingComplete = false;
 
   constructor(
     private pokemonDb: PokemondbService
   ) { }
 
   async ngOnInit(): Promise<void> {
+    console.log(this.loadingComplete);
     var pokeDb = await localforage.createInstance({name: "pokemon"});
     var allPokemon = await this.pokemonDb.getAllRecordsFromDatabase("pokemon");
 
@@ -24,7 +26,11 @@ export class OverviewPageComponent implements OnInit {
       console.log(`Populating PokemonDB..`)
       var pokemonSpeciesList = await this.pokemonDb.getAllPokemonSpecies();
       await this.pokemonDb.getAllPokemonFromSpeciesList(pokemonSpeciesList);
+      this.loadingComplete = true;
+    }else{
+      this.loadingComplete = true;
     }
+    console.log(this.loadingComplete);
 
     var orasDb = await this.pokemonDb.getRegionDatabase("hoenn", allPokemon)
     var letsgoDb = await this.pokemonDb.getRegionDatabase("kanto", allPokemon);

@@ -16,5 +16,11 @@ export class LocalforageService {
     });
   }
 
+  public async deleteDatabase(databaseName){
+    console.log(`deleteDatabase(${databaseName}) called.`)
+    var db = await localforage.createInstance({name: databaseName});
+    db.clear();
+  }
+
   
 }
