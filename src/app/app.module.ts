@@ -13,6 +13,7 @@ import { FilterPipe } from './filter.pipe';
 import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SettingsComponent } from './settings/settings.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
