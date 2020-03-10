@@ -31,19 +31,19 @@ export class RegionPageComponent implements OnInit {
       this.regionName = params['id']; 
     });
 
-    var pokeDb = await localforage.createInstance({name: "pokemon"});
+    // var pokeDb = await localforage.createInstance({name: "pokemon"});
     // pokeDb.clear();
     var regionDb = await localforage.createInstance({name: this.regionName})
     // regionDb.clear()
     
     var allPokemon = await this.pokemonDb.getAllRecordsFromDatabase("pokemon");
 
-    // TODO: Add spinning/loading icon for this
-    if(allPokemon.length == 0){
-      console.log(`Populating PokemonDB..`)
-      var pokemonSpeciesList = await this.pokemonDb.getAllPokemonSpecies();
-      await this.pokemonDb.getAllPokemonFromSpeciesList(pokemonSpeciesList);
-    }
+    // // TODO: Add spinning/loading icon for this
+    // if(allPokemon.length == 0){
+    //   console.log(`Populating PokemonDB..`)
+    //   var pokemonSpeciesList = await this.pokemonDb.getAllPokemonSpecies();
+    //   await this.pokemonDb.getAllPokemonFromSpeciesList(pokemonSpeciesList);
+    // }
 
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
     console.log(`RegionPokemon (${this.regionName}):`)
