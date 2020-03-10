@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~9.0.0-rc.12",
     "@angular/platform-browser-dynamic": "~9.0.0-rc.12",
     "@angular/router": "~9.0.0-rc.12",
+    "@angular/service-worker": "~9.0.0-rc.12",
     "jquery": "^3.4.1",
     "pokeapi-js-wrapper": "^1.1.2",
     "rxjs": "~6.5.4",
