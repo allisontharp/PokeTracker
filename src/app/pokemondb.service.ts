@@ -106,36 +106,30 @@ export class PokemondbService {
     // check if data exists in the database
     var rows = await this.getAllRecordsFromDatabase(region);
     if(rows.length == 0){ // need to populate the database
+      console.log(`Populating db ${region}.`)
       rows = await this.setRegionDatabase(region, allPokemon, db);
     }
-    
+
     return rows;
   }
 
   async setRegionDatabase(region: any, allPokemon: any, db: any){
     console.log(`setRegionDatabase(${region}) called.`)
     
-    // Get the region's pokedex
-    var pokedex = await P.getPokedexByName(region);
-    var pokemonInRegion = new Array;
-    pokedex.pokemon_entries.forEach(async function (pokemon) {
-      var mon = allPokemon.filter(i => i.species.name === pokemon.pokemon_species.name)[0];
-      if(!mon){
-        console.log(`Unable to get:`)
-        console.log(pokemon)
-      } else{
-        var p = {
-          name: mon.species.name,
-          region: region,
-          caught: false,
-          favorite: false,
-          number: mon.number,
-          types: mon.types,
-          string: mon.string
-        }
-        db.setItem(p.number, p);
-        pokemonInRegion.push(p);
+    var pokemonInRegion = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == region));
+    pokemonInRegion.forEach(mon => {
+      var numberRegional = mon.pokedexNumbers.filter(i=>i.pokedex.name == region)[0].entry_number;
+      var p = {
+        name: mon.species.name,
+        region: region,
+        caught: false,
+        favorite: false,
+        numberNational: mon.number,
+        numberRegional: numberRegional,
+        types: mon.types,
+        string: mon.string + numberRegional
       }
+      db.setItem(mon.number, p);
     });
 
     return pokemonInRegion;
