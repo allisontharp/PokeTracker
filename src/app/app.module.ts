@@ -10,10 +10,12 @@ import { environment } from '../environments/environment';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { RegionPageComponent } from './region-page/region-page.component';
 import { FilterPipe } from './filter.pipe';
+
 import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     FilterPipe,
     FavoriteiconComponent,
     OverviewPageComponent,
-    SettingsComponent
+    SettingsComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,

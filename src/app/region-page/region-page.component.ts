@@ -21,6 +21,7 @@ export class RegionPageComponent implements OnInit {
   isFavorite;
   searchText;
   searchNumber;
+  sortByName = 'name';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,8 @@ export class RegionPageComponent implements OnInit {
     });
 
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
+    console.log(this.pokemon);
+
   } // ngOnInit()
 
   setFilterStatus(filterName: string, status: any){
@@ -43,6 +46,17 @@ export class RegionPageComponent implements OnInit {
     else if(filterName == "favorite"){
       this.isFavorite = status
     }
+  }
+
+  setSortByName(sortByName: any){
+    console.log(`setSortByName(${sortByName}) called.`)
+    this.sortByName = sortByName;
+    this.pokemon = this.sortBy();
+  }
+
+  sortBy() {
+    this.pokemon.sort((a, b) => a[this.sortByName] > b[this.sortByName] ? 1 : a[this.sortByName] === b[this.sortByName] ? 0 : -1);
+    return this.pokemon
   }
   
 
