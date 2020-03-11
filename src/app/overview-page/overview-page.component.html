@@ -6,12 +6,14 @@
     </div>
   </div>
   <ng-template #ngTemplateTrue>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">ORAS</h5>
-        <p>Total: {{oras.total}}</p>
-        <p class="card-text">Total Caught: {{oras.caught}}</p>
-        <p>Total Favorites: {{oras.favorite}}</p>
+    <div *ngFor="let r of regions">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{r.name}}</h5>
+          <p>Total: {{r.total}}</p>
+          <p class="card-text">Total Caught: {{r.caught}}</p>
+          <p>Total Favorites: {{r.favorite}}</p>
+        </div>
       </div>
     </div>
-  </ng-template>
+    </ng-template>

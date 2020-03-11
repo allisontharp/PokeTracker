@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as localforage from "localforage";
 import { PokemondbService } from '../pokemondb.service';
+import allPokemon from "../../assets/pokemon.json"
 
 @Component({
   selector: 'app-overview-page',
@@ -11,42 +12,30 @@ export class OverviewPageComponent implements OnInit {
   oras;
   letsgo;
   loadingComplete = false;
+  regionsTracked = ["hoenn", "kanto"];
+  regions = new Array;
 
   constructor(
     private pokemonDb: PokemondbService
   ) { }
 
   async ngOnInit(): Promise<void> {
-    console.log(this.loadingComplete);
-    var pokeDb = await localforage.createInstance({name: "pokemon"});
-    var allPokemon = await this.pokemonDb.getAllRecordsFromDatabase("pokemon");
-
-    // TODO: Add spinning/loading icon for this
-    if(allPokemon.length == 0){
-      console.log(`Populating PokemonDB..`)
-      var pokemonSpeciesList = await this.pokemonDb.getAllPokemonSpecies();
-      await this.pokemonDb.getAllPokemonFromSpeciesList(pokemonSpeciesList);
-      this.loadingComplete = true;
-    }else{
-      this.loadingComplete = true;
-    }
-    console.log(this.loadingComplete);
-
-    var orasDb = await this.pokemonDb.getRegionDatabase("hoenn", allPokemon)
-    var letsgoDb = await this.pokemonDb.getRegionDatabase("kanto", allPokemon);
     
-    this.oras = {
-      total: orasDb.length,
-      caught: orasDb.filter(i=>i.caught == true).length,
-      favorite: orasDb.filter(i=>i.favorite == true).length
-    }
-    console.log(this.oras);
+    this.regionsTracked.forEach(async r => {
+      var regionDb = await this.pokemonDb.getRegionDatabase(r, allPokemon);
+      var region = {
+        name: r,
+        total: regionDb.length,
+        caught: regionDb.filter(i=>i.caught == true).length,
+        favorite: regionDb.filter(i=>i.favorite == true).length
+      }
+      this.regions.push(region);
+      
+    });
+    var s= allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == "kanto"));
+    console.log(s)
 
-    this.letsgo = {
-      total: letsgoDb.length,
-      caught: letsgoDb.filter(i=>i.caught == true).length,
-      favorite: letsgoDb.filter(i=>i.favorite == true).length
-    }
+    this.loadingComplete = true;
 
   }
 

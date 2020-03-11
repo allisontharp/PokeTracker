@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as localforage from "localforage";
 import { ActivatedRoute } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
+import allPokemon from "../../assets/pokemon.json"
 
 const Pokedex = require('pokeapi-js-wrapper');
 const P = new Pokedex.Pokedex();
@@ -31,26 +32,7 @@ export class RegionPageComponent implements OnInit {
       this.regionName = params['id']; 
     });
 
-    // var pokeDb = await localforage.createInstance({name: "pokemon"});
-    // pokeDb.clear();
-    var regionDb = await localforage.createInstance({name: this.regionName})
-    // regionDb.clear()
-    
-    var allPokemon = await this.pokemonDb.getAllRecordsFromDatabase("pokemon");
-
-    // // TODO: Add spinning/loading icon for this
-    // if(allPokemon.length == 0){
-    //   console.log(`Populating PokemonDB..`)
-    //   var pokemonSpeciesList = await this.pokemonDb.getAllPokemonSpecies();
-    //   await this.pokemonDb.getAllPokemonFromSpeciesList(pokemonSpeciesList);
-    // }
-
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
-    console.log(`RegionPokemon (${this.regionName}):`)
-    // console.log(this.pokemon);
-    // console.log(this.pokemon.filter(i=>i.name ==="abra"))
-    // console.log(allPokemon.filter(i=>i.name==="abra"))
-
   } // ngOnInit()
 
   setFilterStatus(filterName: string, status: any){
