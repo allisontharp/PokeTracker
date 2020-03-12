@@ -13,10 +13,10 @@
 
       <div *ngIf="pokemon.caught===true;else inactiveCaught">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.number, pokemon.region, true, pokemon.favorite)">
+            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, true, pokemon.favorite)">
                 <input type="radio" name="options" id="Caught" > Caught
             </label>
-            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.number, pokemon.region, false, pokemon.favorite)">
+            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, false, pokemon.favorite)">
                 <input type="radio" name="options" id="Caught" > Not Caught
             </label>
         </div>
@@ -24,10 +24,10 @@
 
     <ng-template #inactiveCaught>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.number, pokemon.region, true, pokemon.favorite)">
+            <label class="btn btn-secondary" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, true, pokemon.favorite)">
                 <input type="radio" name="options" id="Caught" > Caught
             </label>
-            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.number, pokemon.region, false, pokemon.favorite)">
+            <label class="btn btn-secondary active" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, false, pokemon.favorite)">
                 <input type="radio" name="options" id="Caught" > Not Caught
             </label>
         </div>

@@ -2,11 +2,11 @@
 <div class="d-inline-block" >
     <div *ngIf="pokemon.favorite===true;else inactiveFavorite">
         <i class="fas fa-star" ></i>
-        <button type="button" class="btn active" data-toggle="button" aria-pressed="true" (click)="updateSinglePokemon(pokemon.number, pokemon.region, pokemon.caught, false)">
+        <button type="button" class="btn active" data-toggle="button" aria-pressed="true" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, pokemon.caught, false)">
         </button>
     </div>
     <ng-template #inactiveFavorite>
-        <button type="button" class="btn" data-toggle="button" aria-pressed="false" (click)="updateSinglePokemon(pokemon.number, pokemon.region, pokemon.caught, true)">
+        <button type="button" class="btn" data-toggle="button" aria-pressed="false" (click)="updateSinglePokemon(pokemon.numberRegional, pokemon.region, pokemon.caught, true)">
             <i class="far fa-star"></i>
         </button>
     </ng-template>
