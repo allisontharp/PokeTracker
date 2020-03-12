@@ -7,9 +7,11 @@
       
       <app-favoriteicon [pokemon]="pokemon"></app-favoriteicon>
 
-      <div *ngFor="let type of pokemon.types">
-          <p>{{type.type.name}}</p>
-      </div>
+      <ul class="list-group list-group-horizontal">
+        <div *ngFor="let type of pokemon.types">
+            <li class="list-group-item">{{type.type.name}}</li>
+        </div>
+    </ul>
 
       <div *ngIf="pokemon.caught===true;else inactiveCaught">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
