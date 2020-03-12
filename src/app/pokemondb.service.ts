@@ -136,7 +136,7 @@ export class PokemondbService {
   }
 
   async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
-    console.log(`updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`)
+    console.log(`pokemonDb.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`)
     
     var db = await localforage.createInstance({name: region});
     
