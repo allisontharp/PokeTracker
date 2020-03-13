@@ -17,6 +17,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SortPipe } from './sort.pipe';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
     OverviewPageComponent,
     SettingsComponent,
     SortPipe,
-    PokemonDetailsComponent
+    PokemonDetailsComponent,
+    ScrollToTopComponent
   ],
   imports: [
     BrowserModule,
