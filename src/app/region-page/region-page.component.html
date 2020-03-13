@@ -28,10 +28,20 @@
         </div>
     </div>
 </div>
-
+<div class="d-inline-block" style="margin-left: 10px;" >
+    <div class="dropdown" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort By:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <a class="dropdown-item" (click)="setSortByName('name')" >Name</a>
+            <a class="dropdown-item" (click)="setSortByName('numberRegional')">Regional Number</a>
+        </div>
+    </div>
+</div>
 
 <div class="card-deck" style="margin-left: 5px; margin-top: 25px;">
-    <div *ngFor="let mon of pokemon | filter:{string: searchText, caught: isCaught, favorite: isFavorite, number: searchNumber}">
+    <div *ngFor="let mon of pokemon | filter:{string: searchText, caught: isCaught, favorite: isFavorite, number: searchNumber} | sort:'asc':sortByName">
         <app-pokemon-card [pokemon]="mon"></app-pokemon-card>
     </div>
 </div>

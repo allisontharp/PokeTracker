@@ -7,12 +7,20 @@
   </div>
   <ng-template #ngTemplateTrue>
     <div *ngFor="let r of regions">
-      <div class="card" style="width: 18rem;">
+      <div class="card card-expand-sm" >
         <div class="card-body">
-          <h5 class="card-title">{{r.name}}</h5>
-          <p>Total: {{r.total}}</p>
-          <p class="card-text">Total Caught: {{r.caught}}</p>
-          <p>Total Favorites: {{r.favorite}}</p>
+          <a href="/Region/{{r.name}}" class="btn btn-secondary">Go to Region: {{r.regionName}}</a>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">Caught
+              <span class="badge badge-secondary badge-pill">{{r.caught}}</span>
+            </li>
+            <li class="list-group-item">Favorite
+              <span class="badge badge-secondary badge-pill">{{r.favorite}}</span>
+            </li>
+            <li class="list-group-item">Total
+              <span class="badge badge-secondary badge-pill">{{r.total}}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

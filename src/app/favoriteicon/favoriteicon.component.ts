@@ -25,6 +25,7 @@ export class FavoriteiconComponent implements OnInit {
   async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
     console.log(`favoriteicon.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`);
     this.pokemon.favorite = isFavorite;
+    this.pokemon.caught = isCaught;
 
     await this.pokemonDb.updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite);
   }

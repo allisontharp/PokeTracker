@@ -16,11 +16,13 @@ import {PokemondbService} from "../pokemondb.service"
 export class RegionPageComponent implements OnInit {
   private sub: any;
   regionName: string;
+  dbName: string;
   pokemon;
   isCaught;
   isFavorite;
   searchText;
   searchNumber;
+  sortByName = 'name';
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +31,14 @@ export class RegionPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.sub = this.route.params.subscribe(params => {
-      this.regionName = params['id']; 
+      this.dbName = params['id'];
+      this.regionName = this.dbName.replace('updated-',''); 
     });
 
-    this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
+    this.pokemon = await this.pokemonDb.getRegionDatabase(this.dbName, allPokemon);
+    console.log(this.pokemon);
+    console.log(allPokemon);
+
   } // ngOnInit()
 
   setFilterStatus(filterName: string, status: any){
@@ -43,6 +49,17 @@ export class RegionPageComponent implements OnInit {
     else if(filterName == "favorite"){
       this.isFavorite = status
     }
+  }
+
+  setSortByName(sortByName: any){
+    console.log(`setSortByName(${sortByName}) called.`)
+    this.sortByName = sortByName;
+    this.pokemon = this.sortBy();
+  }
+
+  sortBy() {
+    this.pokemon.sort((a, b) => a[this.sortByName] > b[this.sortByName] ? 1 : a[this.sortByName] === b[this.sortByName] ? 0 : -1);
+    return this.pokemon
   }
   
 
