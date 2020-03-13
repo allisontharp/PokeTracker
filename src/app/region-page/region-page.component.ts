@@ -16,6 +16,7 @@ import {PokemondbService} from "../pokemondb.service"
 export class RegionPageComponent implements OnInit {
   private sub: any;
   regionName: string;
+  dbName: string;
   pokemon;
   isCaught;
   isFavorite;
@@ -30,10 +31,11 @@ export class RegionPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.sub = this.route.params.subscribe(params => {
-      this.regionName = params['id'].replace('updated-',''); 
+      this.dbName = params['id'];
+      this.regionName = this.dbName.replace('updated-',''); 
     });
 
-    this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
+    this.pokemon = await this.pokemonDb.getRegionDatabase(this.dbName, allPokemon);
     console.log(this.pokemon);
 
   } // ngOnInit()
