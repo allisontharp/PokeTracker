@@ -25,9 +25,4 @@ export class PokemonCardComponent implements OnInit {
 
     await this.pokemonDb.updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite);
   }
-
-  getTypeColor(typeName:string){
-    console.log(`getTypeColor(${typeName}) called.`);
-    return colorsTypes.filter(c => c.name == typeName)[0].color;
-  }
 }
