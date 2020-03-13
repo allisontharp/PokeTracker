@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PokemondbService } from '../pokemondb.service';
+import colorsTypes from "../../assets/colors_types.json"
 
 @Component({
   selector: 'app-pokemon-card',
@@ -25,4 +26,8 @@ export class PokemonCardComponent implements OnInit {
     await this.pokemonDb.updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite);
   }
 
+  getTypeColor(typeName:string){
+    console.log(`getTypeColor(${typeName}) called.`);
+    return colorsTypes.filter(c => c.name == typeName)[0].color;
+  }
 }

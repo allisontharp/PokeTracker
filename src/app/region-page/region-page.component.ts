@@ -37,6 +37,7 @@ export class RegionPageComponent implements OnInit {
 
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.dbName, allPokemon);
     console.log(this.pokemon);
+    console.log(allPokemon);
 
   } // ngOnInit()
 
