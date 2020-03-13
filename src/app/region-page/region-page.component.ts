@@ -30,7 +30,7 @@ export class RegionPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.sub = this.route.params.subscribe(params => {
-      this.regionName = params['id']; 
+      this.regionName = params['id'].replace('updated-',''); 
     });
 
     this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);

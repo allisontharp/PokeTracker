@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {RegionPageComponent} from './region-page/region-page.component';
 import {OverviewPageComponent} from './overview-page/overview-page.component'
 import { SettingsComponent } from './settings/settings.component';
+import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 
 const routes: Routes = [
   { path: 'Region/:id',      component: RegionPageComponent },
   { path: '',      component: OverviewPageComponent },
-  { path: 'Settings',      component: SettingsComponent }
+  { path: 'Settings',      component: SettingsComponent },
+  { path: 'Region/:id/:numberNational', component: PokemonDetailsComponent}
 
 ];
 

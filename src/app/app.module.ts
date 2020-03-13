@@ -16,6 +16,7 @@ import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SortPipe } from './sort.pipe';
+import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SortPipe } from './sort.pipe';
     FavoriteiconComponent,
     OverviewPageComponent,
     SettingsComponent,
-    SortPipe
+    SortPipe,
+    PokemonDetailsComponent
   ],
   imports: [
     BrowserModule,

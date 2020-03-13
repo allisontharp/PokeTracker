@@ -50,16 +50,6 @@ export class PokemondbService {
         var id = p.id;
         console.log(`${id} - ${p.name}`)
         var s = speciesByName.filter(i => i.id === id)[0];
-        var pokemonData = {
-          name: p.name,
-          number: p.id,
-          gameIndices: p.game_indices,
-          species: p.species,
-          sprites: p.sprites,
-          types: p.types,
-          evolutionChain: s.evolution_chain,
-          pokedexNumbers: s.pokedex_numbers
-        }
 
         var typeNames = "";
         p.types.forEach(t => {

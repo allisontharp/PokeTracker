@@ -12,7 +12,7 @@ export class OverviewPageComponent implements OnInit {
   oras;
   letsgo;
   loadingComplete = false;
-  regionsTracked = ["hoenn", "kanto"];
+  regionsTracked = ["updated-hoenn", "kanto"];
   regions = new Array;
 
   constructor(
@@ -22,8 +22,10 @@ export class OverviewPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     
     this.regionsTracked.forEach(async r => {
+      var regionName = r.replace('updated-', '');
       var regionDb = await this.pokemonDb.getRegionDatabase(r, allPokemon);
       var region = {
+        regionName: regionName,
         name: r,
         total: regionDb.length,
         caught: regionDb.filter(i=>i.caught == true).length,
