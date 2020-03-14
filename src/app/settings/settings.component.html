@@ -1,4 +1,46 @@
-<button type="button" class="btn btn-danger" (click)='deleteDatabase("pokemon")'>Delete Pokemon Database</button>
-<button type="button" class="btn btn-danger" (click)='deleteDatabase("hoenn")'>Delete Hoenn Database</button>
-<button type="button" class="btn btn-danger" (click)='deleteDatabase("updated-hoenn")'>Delete Updated-Hoenn Database</button>
-<button type="button" class="btn btn-danger" (click)='deleteDatabase("kanto")'>Delete Kanto Database</button>
+<!-- <button type="button" class="btn btn-danger" (click)='deleteDatabase("pokemon")'>Delete Pokemon Database</button> -->
+<!-- <button type="button" class="btn btn-danger" (click)='deleteDatabase("hoenn")'>Delete Hoenn Database</button> -->
+<!-- <button type="button" class="btn btn-danger" (click)='deleteDatabase("updated-hoenn")'>Delete Updated-Hoenn Database</button> -->
+<!-- <button type="button" class="btn btn-danger" (click)='deleteDatabase("kanto")'>Delete Kanto Database</button> -->
+<!-- <button type="button" class="btn btn-danger" (click)='deleteDatabase("gamesToTrack")'>Delete GamesToTrack Database</button> -->
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Games to Track
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+        
+        <div class="form-check" *ngFor="let game of gamesToTrack">
+          <app-game-card [game]="game"></app-game-card>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#deleteDatabase" aria-expanded="true" aria-controls="collapseOne">
+            Delete Databases
+          </button>
+        </h2>
+      </div>
+  
+      <div id="deleteDatabase" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+        
+        <button type="button" class="btn btn-danger" (click)='deleteDatabase("pokemon")'>Delete Pokemon Database</button>
+        <button type="button" class="btn btn-danger" (click)='deleteDatabase("hoenn")'>Delete Hoenn Database</button>
+        <button type="button" class="btn btn-danger" (click)='deleteDatabase("updated-hoenn")'>Delete Updated-Hoenn Database</button>
+        <button type="button" class="btn btn-danger" (click)='deleteDatabase("kanto")'>Delete Kanto Database</button>
+        <button type="button" class="btn btn-danger" (click)='deleteDatabase("gamesToTrack")'>Delete GamesToTrack Database</button>
+
+      </div>
+    </div>
+    
+  </div>

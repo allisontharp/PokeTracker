@@ -18,11 +18,11 @@ export class PokemonCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
-    console.log(`pokemonCard.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`);
+  async updateSinglePokemon(pokemonNumber, Game, isCaught, isFavorite){
+    console.log(`pokemonCard.updateSinglePokemon(${pokemonNumber}, ${Game}, ${isCaught}, ${isFavorite}) called.`);
     this.pokemon.favorite = isFavorite;
     this.pokemon.caught = isCaught;
 
-    await this.pokemonDb.updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite);
+    await this.pokemonDb.updateSinglePokemon(pokemonNumber, Game, isCaught, isFavorite);
   }
 }

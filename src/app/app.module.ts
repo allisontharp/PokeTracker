@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
-import { RegionPageComponent } from './region-page/region-page.component';
+import { GamePageComponent } from './game-page/game-page.component';
 import { FilterPipe } from './filter.pipe';
 
 import { FavoriteiconComponent } from './favoriteicon/favoriteicon.component';
@@ -18,19 +18,21 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SortPipe } from './sort.pipe';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { GameCardComponent } from './game-card/game-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonCardComponent,
-    RegionPageComponent,
+    GamePageComponent,
     FilterPipe,
     FavoriteiconComponent,
     OverviewPageComponent,
     SettingsComponent,
     SortPipe,
     PokemonDetailsComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    GameCardComponent
   ],
   imports: [
     BrowserModule,

@@ -12,8 +12,8 @@ export class OverviewPageComponent implements OnInit {
   oras;
   letsgo;
   loadingComplete = false;
-  regionsTracked = ["updated-hoenn", "kanto"];
-  regions = new Array;
+  GamesTracked = ["updated-hoenn", "kanto"];
+  Games = new Array;
 
   constructor(
     private pokemonDb: PokemondbService
@@ -21,21 +21,22 @@ export class OverviewPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     
-    this.regionsTracked.forEach(async r => {
-      var regionName = r.replace('updated-', '');
-      var regionDb = await this.pokemonDb.getRegionDatabase(r, allPokemon);
-      var region = {
-        regionName: regionName,
+    this.GamesTracked.forEach(async r => {
+      var GameName = r.replace('updated-', '');
+      var GameDb = await this.pokemonDb.getGameDatabase(r, allPokemon);
+      var Game = {
+        GameName: GameName,
         name: r,
-        total: regionDb.length,
-        caught: regionDb.filter(i=>i.caught == true).length,
-        favorite: regionDb.filter(i=>i.favorite == true).length
+        total: GameDb.length,
+        caught: GameDb.filter(i=>i.caught == true).length,
+        favorite: GameDb.filter(i=>i.favorite == true).length
       }
-      this.regions.push(region);
+      this.Games.push(Game);
       
     });
     var s= allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == "kanto"));
     console.log(s)
+    console.log(allPokemon)
 
     this.loadingComplete = true;
 

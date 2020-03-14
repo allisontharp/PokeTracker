@@ -9,13 +9,13 @@ const P = new Pokedex.Pokedex();
 
 import {PokemondbService} from "../pokemondb.service"
 @Component({
-  selector: 'app-region-page',
-  templateUrl: './region-page.component.html',
-  styleUrls: ['./region-page.component.css']
+  selector: 'app-game-page',
+  templateUrl: './game-page.component.html',
+  styleUrls: ['./game-page.component.css']
 })
-export class RegionPageComponent implements OnInit {
+export class GamePageComponent implements OnInit {
   private sub: any;
-  regionName: string;
+  GameName: string;
   dbName: string;
   pokemon;
   isCaught;
@@ -32,10 +32,10 @@ export class RegionPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.sub = this.route.params.subscribe(params => {
       this.dbName = params['id'];
-      this.regionName = this.dbName.replace('updated-',''); 
+      this.GameName = this.dbName.replace('updated-',''); 
     });
 
-    this.pokemon = await this.pokemonDb.getRegionDatabase(this.dbName, allPokemon);
+    this.pokemon = await this.pokemonDb.getGameDatabase(this.dbName, allPokemon);
     console.log(this.pokemon);
     console.log(allPokemon);
 

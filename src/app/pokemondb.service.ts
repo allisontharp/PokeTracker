@@ -77,58 +77,48 @@ export class PokemondbService {
   }
 
 
-  async getAllRecordsFromDatabase(dbName: string){
-    var db = localforage.createInstance({name: dbName});
-    var rows = new Array;
-    await db.iterate(function(value, key, iterationNumber) {
-      rows.push(value);
-    });
+  
 
-    console.log(`${dbName} Length: ${rows.length}`)
-
-    return rows;
-  }
-
-  async getRegionDatabase(region: string, allPokemon: any){
-    console.log(`getRegionDatabase(${region}) called.`)
-    var db = localforage.createInstance({name:region});
+  async getGameDatabase(Game: string, allPokemon: any){
+    console.log(`getGameDatabase(${Game}) called.`)
+    var db = localforage.createInstance({name:Game});
 
     // check if data exists in the database
-    var rows = await this.getAllRecordsFromDatabase(region);
+    var rows = await this.lf.getAllRecordsFromDatabase(Game);
     if(rows.length == 0){ // need to populate the database
-      console.log(`Populating db ${region}.`)
-      rows = await this.setRegionDatabase(region, allPokemon, db);
+      console.log(`Populating db ${Game}.`)
+      rows = await this.setGameDatabase(Game, allPokemon, db);
     }
 
     return rows;
   }
 
-  async setRegionDatabase(region: any, allPokemon: any, db: any){
-    console.log(`setRegionDatabase(${region}) called.`)
+  async setGameDatabase(Game: any, allPokemon: any, db: any){
+    console.log(`setGameDatabase(${Game}) called.`)
     
-    var pokemonInRegion = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == region));
-    pokemonInRegion.forEach(mon => {
-      var numberRegional = mon.pokedexNumbers.filter(i=>i.pokedex.name == region)[0].entry_number;
+    var pokemonInGame = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == Game));
+    pokemonInGame.forEach(mon => {
+      var numberGameal = mon.pokedexNumbers.filter(i=>i.pokedex.name == Game)[0].entry_number;
       var p = {
         name: mon.species.name,
-        region: region,
+        Game: Game,
         caught: false,
         favorite: false,
         numberNational: mon.number,
-        numberRegional: numberRegional,
+        numberGameal: numberGameal,
         types: mon.types,
-        string: mon.string + numberRegional
+        string: mon.string + numberGameal
       }
       db.setItem(mon.number, p);
     });
 
-    return pokemonInRegion;
+    return pokemonInGame;
   }
 
-  async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
-    console.log(`pokemonDb.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`)
+  async updateSinglePokemon(pokemonNumber, Game, isCaught, isFavorite){
+    console.log(`pokemonDb.updateSinglePokemon(${pokemonNumber}, ${Game}, ${isCaught}, ${isFavorite}) called.`)
     
-    var db = await localforage.createInstance({name: region});
+    var db = await localforage.createInstance({name: Game});
     
     var item = {
       caught: isCaught,

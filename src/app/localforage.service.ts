@@ -22,5 +22,23 @@ export class LocalforageService {
     db.clear();
   }
 
+  async getAllRecordsFromDatabase(dbName: string){
+    var db = localforage.createInstance({name: dbName});
+    var rows = new Array;
+    await db.iterate(function(value, key, iterationNumber) {
+      rows.push(value);
+    });
+
+    console.log(`${dbName} Length: ${rows.length}`)
+
+    return rows;
+  }
+
+  async getRowFromDatabase(dbName: string, rowKey: string){
+    var db = await localforage.createInstance({name: dbName});
+    var row = await db.getItem(rowKey);
+    return row;
+  }
+
   
 }

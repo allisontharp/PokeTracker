@@ -1,0 +1,129 @@
+[
+    {
+        "name": "Red - Blue",
+        "generation": "I",
+        "pokedexes": [{"name": "kanto"}],
+        "regions": [{"name": "kanto"}],
+        "versions": [{"name": "Red"}, {"name": "Blue"}]
+
+    },
+    {
+        "name": "Yellow",
+        "generation": "I",
+        "pokedexes": [{"name": "kanto"}],
+        "regions": [{"name": "kanto"}],
+        "versions": [{"name": "Yellow"}]
+    },
+    {
+        "name": "Gold - Silver",
+        "generation": "II",
+        "pokedexes": [{"name": "original-johto"}],
+        "regions": [{"name": "kanto"}, {"name": "johto"}],
+        "versions": [{"name": "Gold"}, {"name": "Silver"}]
+    },
+    {
+        "name": "Crystal",
+        "generation": "II",
+        "pokedexes": [{"name": "originall-johto"}],
+        "regions": [{"name": "kanto"}, {"name": "johto"}],
+        "versions": [{"name": "Crystal"}]      
+    },
+    {
+        "name": "Ruby - Sapphire",
+        "generation": "III",
+        "pokedexes": [{"name": "hoenn"}],
+        "regions": [{"name": "hoenn"}],
+        "versions": [{"name": "Ruby"}, {"name": "Sapphire"}]    
+    },
+    {
+        "name": "Emerald",
+        "generation": "III",
+        "pokedexes": [{"name": "hoenn"}],
+        "regions": [{"name": "hoenn"}],
+        "versions": [{"name": "Emerald"}]    
+    },
+    {
+        "name": "Fire Red - Leaf Green",
+        "generation": "III",
+        "pokedexes": [{"name": "kanto"}],
+        "regions": [{"name": "kanto"}],
+        "versions": [{"name": "Fire Red"}, {"name": "Leaf Green"}]    
+    },
+    {
+        "name": "Diamond - Pearl",
+        "generation": "IV",
+        "pokedexes": [{"name": "original-sinnoh"}],
+        "regions": [{"name": "sinnoh"}],
+        "versions": [{"name": "Diamond"}, {"name": "Pearl"}]    
+    },
+    {
+        "name": "Platinum",
+        "generation": "IV",
+        "pokedexes": [{"name": "extended-sinnoh"}],
+        "regions": [{"name": "sinnoh"}],
+        "versions": [{"name": "Platinum"}]
+    },
+    {
+        "name": "Heart Gold - Soul Silver",
+        "generation": "IV",
+        "pokedexes": [{"name": "updated-johto"}],
+        "regions": [{"name": "kanto"}, {"name": "johto"}],
+        "versions": [{"name": "Geart Gold"}, {"name": "Soul Silver"}]
+    },
+    {
+        "name": "Black - White",
+        "generation": "V",
+        "pokedexes": [{"name": "original-unova"}],
+        "regions": [{"name": "unova"}],
+        "versions": [{"name": "Black"}, {"name": "White"}]
+    },
+    {
+        "name": "Black 2 - White 2",
+        "generation": "V",
+        "pokedexes": [{"name": "updated-unova"}],
+        "regions": [{"name": "unova"}],
+        "versions": [{"name": "Black 2"}, {"name": "White 2"}]
+    },
+    {
+        "name": "X - Y",
+        "generation": "VI",
+        "pokedexes": [{"name": "kalos-central"}, {"name": "kalos-coastal"}, {"name": "kalos-mountain"}],
+        "regions": [{"name": "kalos"}],
+        "versions": [{"name": "X"}, {"name": "Y"}]
+    },
+    {
+        "name": "Omega Ruby - Alpha Sapphire",
+        "generation": "VI",
+        "pokedexes": [{"name": "updated-hoenn"}],
+        "regions": [{"name": "hoenn"}],
+        "versions": [{"name": "Omega Ruby"}, {"name": "Alpha Sapphire"}]
+    },
+    {
+        "name": "Sun - Moon",
+        "generation": "VII",
+        "pokedexes": [{"name": ""}],
+        "regions": [{"name": "alola"}],
+        "versions": [{"name": "Sun"}, {"name": "Moon"}]
+    },
+    {
+        "name": "Ultra Sun - Ultra Moon",
+        "generation": "VII",
+        "pokedexes": [{"name": ""}],
+        "regions": [{"name": "alola"}],
+        "versions": [{"name": "Ultra Sun"}, {"name": "Ultra Moon"}]
+    },
+    {
+        "name": "Lets Go Eevee - Lets Go Pikachu",
+        "generation": "VII",
+        "pokedexes": [{"name": "kanto"}],
+        "regions": [{"name": "kanto"}],
+        "versions": [{"name": "Lets Go Eevee"}, {"name": "Lets Go Pikachu"}]
+    },
+    {
+        "name": "Sword - Shield",
+        "generation": "VIII",
+        "pokedexes": [{"name": "galar"}],
+        "regions": [{"name": "galar"}],
+        "versions": [{"name": "Sword"}, {"name": "Shield"}]
+    }
+]

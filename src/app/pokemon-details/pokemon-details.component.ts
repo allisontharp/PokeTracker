@@ -10,7 +10,7 @@ import allPokemon from "../../assets/pokemon.json"
 })
 export class PokemonDetailsComponent implements OnInit {
   private sub: any;
-  regionName: string;
+  GameName: string;
   numberNational;
   pokemon;
 
@@ -22,16 +22,16 @@ export class PokemonDetailsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.sub = this.route.params.subscribe(params => {
-      this.regionName = params['id']; 
+      this.GameName = params['id']; 
       this.numberNational = params['numberNational'];
     });
 
-    // this.pokemon = await this.pokemonDb.getRegionDatabase(this.regionName, allPokemon);
+    // this.pokemon = await this.pokemonDb.getGameDatabase(this.GameName, allPokemon);
 
     
-    // console.log(`Region:${this.regionName} Number: ${this.numberNational}`)
+    // console.log(`Game:${this.GameName} Number: ${this.numberNational}`)
     // console.log(this.pokemon)
-    // var mon = this.pokemon.filter(i=> i.numberRegional == this.numberNational);
+    // var mon = this.pokemon.filter(i=> i.numberGameal == this.numberNational);
     // console.log(mon);
 
     var mon = allPokemon.filter(i=>i.number == this.numberNational);
