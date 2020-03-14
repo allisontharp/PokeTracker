@@ -6,6 +6,7 @@ const Pokedex = require('pokeapi-js-wrapper');
 const P = new Pokedex.Pokedex();
 import { LocalforageService } from './localforage.service';
 import { createInflate } from 'zlib';
+import gameJson from "../assets/game_regions.json";
 
 @Injectable({
   providedIn: 'root'
@@ -79,37 +80,42 @@ export class PokemondbService {
 
   
 
-  async getGameDatabase(Game: string, allPokemon: any){
-    console.log(`getGameDatabase(${Game}) called.`)
-    var db = localforage.createInstance({name:Game});
+  async getGameDatabase(game: string, allPokemon: any){
+    console.log(`getGameDatabase(${game}) called.`)
+    var db = localforage.createInstance({name:game});
 
     // check if data exists in the database
-    var rows = await this.lf.getAllRecordsFromDatabase(Game);
+    var rows = await this.lf.getAllRecordsFromDatabase(game);
     if(rows.length == 0){ // need to populate the database
-      console.log(`Populating db ${Game}.`)
-      rows = await this.setGameDatabase(Game, allPokemon, db);
+      console.log(`Populating db ${game}.`)
+      rows = await this.setGameDatabase(game, allPokemon, db);
     }
 
     return rows;
   }
 
-  async setGameDatabase(Game: any, allPokemon: any, db: any){
-    console.log(`setGameDatabase(${Game}) called.`)
-    
-    var pokemonInGame = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == Game));
-    pokemonInGame.forEach(mon => {
-      var numberGameal = mon.pokedexNumbers.filter(i=>i.pokedex.name == Game)[0].entry_number;
-      var p = {
-        name: mon.species.name,
-        Game: Game,
-        caught: false,
-        favorite: false,
-        numberNational: mon.number,
-        numberGameal: numberGameal,
-        types: mon.types,
-        string: mon.string + numberGameal
-      }
-      db.setItem(mon.number, p);
+  async setGameDatabase(game: any, allPokemon: any, db: any){
+    game = game.replace('-', ' ');
+    var gameRow = gameJson.filter(gameGroup => gameGroup.versions.some(v => v.name == game)); // TODO: Make this case insensitive
+    var pokedex = gameRow[0].pokedexes;
+    console.log(pokedex);
+    var pokemonInGame;
+    pokedex.forEach(dex => {
+      pokemonInGame = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == dex.name));
+      pokemonInGame.forEach(mon => {
+        var numberRegional = mon.pokedexNumbers.filter(i=>i.pokedex.name == dex.name)[0].entry_number;
+        var p = {
+          name: mon.species.name,
+          game: game,
+          caught: false,
+          favorite: false,
+          numberNational: mon.number,
+          numberRegional: numberRegional,
+          types: mon.types,
+          string: mon.string + numberRegional
+        }
+        db.setItem(mon.number, p);
+      });
     });
 
     return pokemonInGame;

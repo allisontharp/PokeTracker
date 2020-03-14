@@ -18,7 +18,13 @@
         <a class="nav-link" href="">Home </a>
       </li>
 
-      <li class="nav-item">
+      <div *ngFor="let g of gamesToTrack">
+        <li class="nav-item">
+          <a class="nav-link" href="Game/{{g.gameName.replace(' ', '-')}}">{{g.gameName}}</a>
+        </li>
+      </div>
+
+      <!-- <li class="nav-item">
         <a class="nav-link" href="Game/updated-hoenn">ORAS</a>
       </li>
 
@@ -29,10 +35,11 @@
       <li class="nav-item">
         <a class="nav-link" href="Game/hoenn/1">Test</a>
       </li>
+    -->
 
       <li class="nav-item">
         <a class="nav-link" href="Settings">Settings</a>
-      </li>
+      </li> 
     
     </ul>
   </div>
