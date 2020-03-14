@@ -92,7 +92,8 @@ export class PokemondbService {
   }
 
   async setGameDatabase(game: any, allPokemon: any, db: any){
-    game = game.replace('-', ' ');
+    console.log(`pokemondb.setGameDatabase(${game}, allPokemon, ${db}) called`)
+    game = game.split('-').join(' ');
     var gameRow = gameJson.filter(gameGroup => gameGroup.versions.some(v => v.name == game)); // TODO: Make this case insensitive
     var pokedex = gameRow[0].pokedexes;
     var pokemonInGame;
@@ -131,9 +132,7 @@ export class PokemondbService {
     item.caught = isCaught;
     item.favorite = isFavorite;
 
-    db.setItem(pokemonNumber, item);
-    
-
+    await db.setItem(pokemonNumber, item);
   }
 
 

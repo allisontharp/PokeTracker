@@ -19,7 +19,7 @@ export class PokemonCardComponent implements OnInit {
   }
 
   async updateSinglePokemon(pokemonNumber, game, isCaught, isFavorite){
-    game = game.replace(' ', '-')
+    game = game.split(' ').join('-');
     console.log(`pokemonCard.updateSinglePokemon(${pokemonNumber}, ${game}, ${isCaught}, ${isFavorite}) called.`);
     this.pokemon.favorite = isFavorite;
     this.pokemon.caught = isCaught;

@@ -25,10 +25,11 @@ export class OverviewPageComponent implements OnInit {
     this.gamesToTrack = await this.lf.getAllRecordsFromDatabase("gamesToTrack");
     this.gamesToTrack = this.gamesToTrack.filter(g => g.track == true);
     this.gamesToTrack.forEach(async r => {
-      var GameDb = await this.pokemonDb.getGameDatabase(r.gameName, allPokemon);
+      var dbName = r.gameName.split(' ').join('-')
+      var GameDb = await this.pokemonDb.getGameDatabase(dbName, allPokemon);
       var Game = {
         GameName: r.gameName,
-        name: r.gameName,
+        dbName: dbName,
         total: GameDb.length,
         caught: GameDb.filter(i=>i.caught == true).length,
         favorite: GameDb.filter(i=>i.favorite == true).length

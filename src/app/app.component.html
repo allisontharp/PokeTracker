@@ -20,7 +20,7 @@
 
       <div *ngFor="let g of gamesToTrack">
         <li class="nav-item">
-          <a class="nav-link" href="Game/{{g.gameName.replace(' ', '-')}}">{{g.gameName}}</a>
+          <a class="nav-link" href="Game/{{g.gameName.split(' ').join('-')}}">{{g.gameName}}</a>
         </li>
       </div>
 

@@ -9,7 +9,7 @@
     <div *ngFor="let r of Games">
       <div class="card card-expand-sm" >
         <div class="card-body">
-          <a href="/Game/{{r.name}}" class="btn btn-secondary">Go to Game: {{r.GameName}}</a>
+          <a href="/Game/{{r.dbName}}" class="btn btn-secondary">Go to Game: {{r.GameName}}</a>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item">Caught
               <span class="badge badge-secondary badge-pill">{{r.caught}}</span>
