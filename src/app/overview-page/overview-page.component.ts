@@ -24,9 +24,7 @@ export class OverviewPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.gamesToTrack = await this.lf.getAllRecordsFromDatabase("gamesToTrack");
     this.gamesToTrack = this.gamesToTrack.filter(g => g.track == true);
-    console.log(this.gamesToTrack);
     this.gamesToTrack.forEach(async r => {
-      console.log(`gameName: ${r.gameName}`)
       var GameDb = await this.pokemonDb.getGameDatabase(r.gameName, allPokemon);
       var Game = {
         GameName: r.gameName,

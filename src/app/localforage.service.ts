@@ -23,6 +23,7 @@ export class LocalforageService {
   }
 
   async getAllRecordsFromDatabase(dbName: string){
+    console.log(`getAllRecordsFromDatabase(${dbName}) called.`)
     var db = localforage.createInstance({name: dbName});
     var rows = new Array;
     await db.iterate(function(value, key, iterationNumber) {
