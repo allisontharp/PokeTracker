@@ -25,7 +25,6 @@ export class SettingsComponent implements OnInit {
       this.setGameTrackingDatabase();
     }
     this.gamesToTrack = await this.lf.getAllRecordsFromDatabase("gamesToTrack");
-    console.log(this.gamesToTrack);
   }
 
   async setGameTrackingDatabase(){

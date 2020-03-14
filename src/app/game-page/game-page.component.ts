@@ -36,13 +36,10 @@ export class GamePageComponent implements OnInit {
     });
 
     this.pokemon = await this.pokemonDb.getGameDatabase(this.dbName, allPokemon);
-    console.log(this.pokemon);
-    console.log(allPokemon);
 
   } // ngOnInit()
 
   setFilterStatus(filterName: string, status: any){
-    console.log(`${filterName} status: ${status}`);
     if(filterName == "caught"){
       this.isCaught = status;
     }

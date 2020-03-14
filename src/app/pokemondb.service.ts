@@ -29,7 +29,6 @@ export class PokemondbService {
   }
 
   async getAllPokemonFromSpeciesList(pokemonSpeciesList: Array<string>){
-    console.log(pokemonSpeciesList)
     // split array into array of arrays (so we don't call the API as many times)
     var arraySize = 100;
     var arrayOfSpeciesList = [];
@@ -39,7 +38,6 @@ export class PokemondbService {
 
 
     arrayOfSpeciesList.forEach(async a => {
-      console.log(a);
       var speciesByName = await P.getPokemonSpeciesByName(a);
       var pokemonNumbers = new Array;
       speciesByName.forEach(e => {
@@ -49,7 +47,6 @@ export class PokemondbService {
       
       pokemonByName.forEach(async p => {
         var id = p.id;
-        console.log(`${id} - ${p.name}`)
         var s = speciesByName.filter(i => i.id === id)[0];
 
         var typeNames = "";
@@ -98,7 +95,6 @@ export class PokemondbService {
     game = game.replace('-', ' ');
     var gameRow = gameJson.filter(gameGroup => gameGroup.versions.some(v => v.name == game)); // TODO: Make this case insensitive
     var pokedex = gameRow[0].pokedexes;
-    console.log(pokedex);
     var pokemonInGame;
     pokedex.forEach(dex => {
       pokemonInGame = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == dex.name));

@@ -30,8 +30,6 @@ export class LocalforageService {
       rows.push(value);
     });
 
-    console.log(`${dbName} Length: ${rows.length}`)
-
     return rows;
   }
 

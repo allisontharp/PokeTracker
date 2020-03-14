@@ -17,6 +17,5 @@ export class AppComponent {
   async ngOnInit(): Promise<void> {
     this.gamesToTrack = await this.lf.getAllRecordsFromDatabase("gamesToTrack");
     this.gamesToTrack = this.gamesToTrack.filter(g => g.track == true);
-    console.log(this.gamesToTrack);
   }
 }

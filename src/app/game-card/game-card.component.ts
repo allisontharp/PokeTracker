@@ -27,9 +27,5 @@ export class GameCardComponent implements OnInit {
     this.rowValue.track = isChecked;
     
     await this.lf.setDatabaseRow("gamesToTrack", rowKey, this.rowValue)
-    
-    console.log('Database is now:')
-    console.log(await this.lf.getAllRecordsFromDatabase("gamesToTrack"))
-    
   }
 }
