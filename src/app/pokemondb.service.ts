@@ -6,6 +6,7 @@ const Pokedex = require('pokeapi-js-wrapper');
 const P = new Pokedex.Pokedex();
 import { LocalforageService } from './localforage.service';
 import { createInflate } from 'zlib';
+import gameJson from "../assets/game_regions.json";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,6 @@ export class PokemondbService {
   }
 
   async getAllPokemonFromSpeciesList(pokemonSpeciesList: Array<string>){
-    console.log(pokemonSpeciesList)
     // split array into array of arrays (so we don't call the API as many times)
     var arraySize = 100;
     var arrayOfSpeciesList = [];
@@ -38,7 +38,6 @@ export class PokemondbService {
 
 
     arrayOfSpeciesList.forEach(async a => {
-      console.log(a);
       var speciesByName = await P.getPokemonSpeciesByName(a);
       var pokemonNumbers = new Array;
       speciesByName.forEach(e => {
@@ -48,7 +47,6 @@ export class PokemondbService {
       
       pokemonByName.forEach(async p => {
         var id = p.id;
-        console.log(`${id} - ${p.name}`)
         var s = speciesByName.filter(i => i.id === id)[0];
 
         var typeNames = "";
@@ -77,58 +75,53 @@ export class PokemondbService {
   }
 
 
-  async getAllRecordsFromDatabase(dbName: string){
-    var db = localforage.createInstance({name: dbName});
-    var rows = new Array;
-    await db.iterate(function(value, key, iterationNumber) {
-      rows.push(value);
-    });
+  
 
-    console.log(`${dbName} Length: ${rows.length}`)
-
-    return rows;
-  }
-
-  async getRegionDatabase(region: string, allPokemon: any){
-    console.log(`getRegionDatabase(${region}) called.`)
-    var db = localforage.createInstance({name:region});
+  async getGameDatabase(game: string, allPokemon: any){
+    console.log(`getGameDatabase(${game}) called.`)
+    var db = localforage.createInstance({name:game});
 
     // check if data exists in the database
-    var rows = await this.getAllRecordsFromDatabase(region);
+    var rows = await this.lf.getAllRecordsFromDatabase(game);
     if(rows.length == 0){ // need to populate the database
-      console.log(`Populating db ${region}.`)
-      rows = await this.setRegionDatabase(region, allPokemon, db);
+      console.log(`Populating db ${game}.`)
+      rows = await this.setGameDatabase(game, allPokemon, db);
     }
 
     return rows;
   }
 
-  async setRegionDatabase(region: any, allPokemon: any, db: any){
-    console.log(`setRegionDatabase(${region}) called.`)
-    
-    var pokemonInRegion = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == region));
-    pokemonInRegion.forEach(mon => {
-      var numberRegional = mon.pokedexNumbers.filter(i=>i.pokedex.name == region)[0].entry_number;
-      var p = {
-        name: mon.species.name,
-        region: region,
-        caught: false,
-        favorite: false,
-        numberNational: mon.number,
-        numberRegional: numberRegional,
-        types: mon.types,
-        string: mon.string + numberRegional
-      }
-      db.setItem(mon.number, p);
+  async setGameDatabase(game: any, allPokemon: any, db: any){
+    console.log(`pokemondb.setGameDatabase(${game}, allPokemon, ${db}) called`)
+    game = game.split('-').join(' ');
+    var gameRow = gameJson.filter(gameGroup => gameGroup.versions.some(v => v.name == game)); // TODO: Make this case insensitive
+    var pokedex = gameRow[0].pokedexes;
+    var pokemonInGame;
+    pokedex.forEach(dex => {
+      pokemonInGame = allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == dex.name));
+      pokemonInGame.forEach(mon => {
+        var numberRegional = mon.pokedexNumbers.filter(i=>i.pokedex.name == dex.name)[0].entry_number;
+        var p = {
+          name: mon.species.name,
+          game: game,
+          caught: false,
+          favorite: false,
+          numberNational: mon.number,
+          numberRegional: numberRegional,
+          types: mon.types,
+          string: mon.string + numberRegional
+        }
+        db.setItem(mon.number, p);
+      });
     });
-
-    return pokemonInRegion;
+    console.log(pokemonInGame)
+    return pokemonInGame;
   }
 
-  async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
-    console.log(`pokemonDb.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`)
+  async updateSinglePokemon(pokemonNumber, Game, isCaught, isFavorite){
+    console.log(`pokemonDb.updateSinglePokemon(${pokemonNumber}, ${Game}, ${isCaught}, ${isFavorite}) called.`)
     
-    var db = await localforage.createInstance({name: region});
+    var db = await localforage.createInstance({name: Game});
     
     var item = {
       caught: isCaught,
@@ -139,9 +132,7 @@ export class PokemondbService {
     item.caught = isCaught;
     item.favorite = isFavorite;
 
-    db.setItem(pokemonNumber, item);
-    
-
+    await db.setItem(pokemonNumber, item);
   }
 
 

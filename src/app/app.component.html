@@ -18,21 +18,15 @@
         <a class="nav-link" href="">Home </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="Region/updated-hoenn">ORAS</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="Region/kanto">Lets Go</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="Region/hoenn/1">Test</a>
-      </li>
+      <div *ngFor="let g of gamesToTrack">
+        <li class="nav-item">
+          <a class="nav-link" href="Game/{{g.gameName.split(' ').join('-')}}">{{g.gameName}}</a>
+        </li>
+      </div>
 
       <li class="nav-item">
         <a class="nav-link" href="Settings">Settings</a>
-      </li>
+      </li> 
     
     </ul>
   </div>

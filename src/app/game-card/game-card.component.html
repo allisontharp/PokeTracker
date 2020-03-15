@@ -1,0 +1,20 @@
+<div *ngIf="game.track===true;else inactiveCheckmark">
+    <input class="form-check-input" type="checkbox" checked="true"  id="{{game.gameName}}" (change)="setGameToTrack(game.gameName, $event.target.checked)">
+    <label class="form-check-label" for="defaultCheck1" >
+        {{game.gameName}}
+    </label>
+</div>
+<ng-template #inactiveCheckmark>
+    <div *ngIf="game.pokedexes[0].name!=''; else missingPokedex">
+        <input class="form-check-input" type="checkbox"  id="{{game.gameName}}" (change)="setGameToTrack(game.gameName, $event.target.checked)">
+        <label class="form-check-label" for="defaultCheck1" >
+            {{game.gameName}}
+        </label>
+    </div>
+</ng-template>
+<ng-template #missingPokedex>
+    <input class="form-check-input" type="checkbox"  id="{{game.gameName}}" disabled>
+        <label class="form-check-label" for="defaultCheck1" >
+            {{game.gameName}}
+        </label>
+</ng-template>

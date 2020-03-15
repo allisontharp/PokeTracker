@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as localforage from "localforage";
 import { PokemondbService } from '../pokemondb.service';
 import allPokemon from "../../assets/pokemon.json"
+import { LocalforageService } from '../localforage.service';
 
 @Component({
   selector: 'app-overview-page',
@@ -12,30 +13,30 @@ export class OverviewPageComponent implements OnInit {
   oras;
   letsgo;
   loadingComplete = false;
-  regionsTracked = ["updated-hoenn", "kanto"];
-  regions = new Array;
+  gamesToTrack;
+  Games = new Array;
 
   constructor(
-    private pokemonDb: PokemondbService
+    private pokemonDb: PokemondbService,
+    private lf: LocalforageService
   ) { }
 
   async ngOnInit(): Promise<void> {
-    
-    this.regionsTracked.forEach(async r => {
-      var regionName = r.replace('updated-', '');
-      var regionDb = await this.pokemonDb.getRegionDatabase(r, allPokemon);
-      var region = {
-        regionName: regionName,
-        name: r,
-        total: regionDb.length,
-        caught: regionDb.filter(i=>i.caught == true).length,
-        favorite: regionDb.filter(i=>i.favorite == true).length
+    this.gamesToTrack = await this.lf.getAllRecordsFromDatabase("gamesToTrack");
+    this.gamesToTrack = this.gamesToTrack.filter(g => g.track == true);
+    this.gamesToTrack.forEach(async r => {
+      var dbName = r.gameName.split(' ').join('-')
+      var GameDb = await this.pokemonDb.getGameDatabase(dbName, allPokemon);
+      var Game = {
+        GameName: r.gameName,
+        dbName: dbName,
+        total: GameDb.length,
+        caught: GameDb.filter(i=>i.caught == true).length,
+        favorite: GameDb.filter(i=>i.favorite == true).length
       }
-      this.regions.push(region);
+      this.Games.push(Game);
       
     });
-    var s= allPokemon.filter(d => d.pokedexNumbers.some(c => c.pokedex.name == "kanto"));
-    console.log(s)
 
     this.loadingComplete = true;
 

@@ -22,12 +22,13 @@ export class FavoriteiconComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite){
-    console.log(`favoriteicon.updateSinglePokemon(${pokemonNumber}, ${region}, ${isCaught}, ${isFavorite}) called.`);
+  async updateSinglePokemon(pokemonNumber, game, isCaught, isFavorite){
+    game = game.split(' ').join('-')
+    console.log(`favoriteicon.updateSinglePokemon(${pokemonNumber}, ${game}, ${isCaught}, ${isFavorite}) called.`);
     this.pokemon.favorite = isFavorite;
     this.pokemon.caught = isCaught;
 
-    await this.pokemonDb.updateSinglePokemon(pokemonNumber, region, isCaught, isFavorite);
+    await this.pokemonDb.updateSinglePokemon(pokemonNumber, game, isCaught, isFavorite);
   }
 
 }
