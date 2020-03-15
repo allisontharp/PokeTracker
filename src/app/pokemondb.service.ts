@@ -114,7 +114,7 @@ export class PokemondbService {
         db.setItem(mon.number, p);
       });
     });
-
+    console.log(pokemonInGame)
     return pokemonInGame;
   }
 
