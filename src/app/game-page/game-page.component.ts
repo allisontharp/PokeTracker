@@ -48,6 +48,10 @@ export class GamePageComponent implements OnInit {
     }
   }
 
+  clearSearch(){
+    this.searchText = "";
+  }
+
   setSortByName(sortByName: any){
     console.log(`setSortByName(${sortByName}) called.`)
     this.sortByName = sortByName;
