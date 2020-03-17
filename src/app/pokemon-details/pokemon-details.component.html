@@ -1,4 +1,32 @@
 <!-- https://getbootstrap.com/docs/4.4/components/popovers/ -->
 
-<p>pokemon-details works!</p>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{pokemonName}}</h5>
+        <b>Normal Damage Against:</b>
+        <div *ngFor = "let t of monMultipliers | filter:{category: 'normal'}">
+            {{t.name}} ({{t.multiplier}} x)
+        </div>
+        <b>Weak To:</b>
+        <div *ngFor = "let t of monMultipliers | filter:{category: 'weak'}">
+        {{t.name}} ({{t.multiplier}} x)
+        </div>
+        <b>Immune To:</b>
+        <div *ngFor = "let t of monMultipliers | filter:{category: 'immune'}">
+        {{t.name}} ({{t.multiplier}} x)
+        </div>
+        
+        <b>Resistant To:</b>
+        <div *ngFor = "let t of monMultipliers | filter:{category: 'resistant   '}">
+        {{t.name}} ({{t.multiplier}} x)
+        </div>
+    </div>
+  </div>
 
+
+
+
+  <!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" 
+    data-content="And here's some amazing content. It's very engaging. Right?">
+    Click to toggle popover
+</button> -->
