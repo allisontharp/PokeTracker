@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import allPokemon from "../../assets/pokemon.json"
 import allTypes from "../../assets/types.json"
@@ -9,9 +9,10 @@ import allTypes from "../../assets/types.json"
   styleUrls: ['./pokemon-details.component.css']
 })
 export class PokemonDetailsComponent implements OnInit {
+  @Input()
+  numberNational;
   private sub: any;
   GameName: string;
-  numberNational;
   pokemonName;
   monTypes: any;
   monMultipliers: any;
@@ -22,10 +23,11 @@ export class PokemonDetailsComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.sub = this.route.params.subscribe(params => {
-      this.GameName = params['id']; 
-      this.numberNational = params['numberNational'];
-    });
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.GameName = params['id']; 
+    //   this.numberNational = params['numberNational'];
+    // });
+    this.GameName = 'Sword';
 
     this.monTypes = new Array;
 
@@ -40,7 +42,6 @@ export class PokemonDetailsComponent implements OnInit {
     });
 
     this.monMultipliers = this.getWeaknesses();
-    console.log(this.monMultipliers);
     
   }
 
